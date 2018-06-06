@@ -1,0 +1,25 @@
+{
+  "name": "yonasyulin",
+  "version": "1.0.0",
+  "description": "wedding RSVP app",
+  "main": "index.js",
+  "dependencies": {
+    "next": "^6.0.3",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yonasstephen/yonasyulin.git"
+  },
+  "author": "yonasstephen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yonasstephen/yonasyulin/issues"
+  },
+  "homepage": "https://github.com/yonasstephen/yonasyulin#readme"
+}
