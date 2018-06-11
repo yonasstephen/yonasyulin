@@ -1,0 +1,34 @@
+@font-face {
+  font-family: "sf_pro";
+  src: url("/static/fonts/SF-Pro-Text-Regular.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "dancing_script";
+  src: url("/static/fonts/DancingScript-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "dancing_script";
+  font-weight: bold;
+  src: url("/static/fonts/DancingScript-Bold.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "great_vibes";
+  src: url("/static/fonts/GreatVibes-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "adlery_swash";
+  src: url("/static/fonts/Adlery-Swash.ttf") format("truetype");
+}
+
+html, body, #__next {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: sf_pro;
+}
