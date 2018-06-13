@@ -20,7 +20,7 @@ export default () =>
     />
     <div style={styles.subtitle}>Our Wedding</div>
     <div style={styles.weddingDetails}>
-      <div style={Object.assign({}, styles.card, { gridColumnStart: 4})}>
+      <div style={Object.assign({}, styles.card, { gridColumn: '3 / span 2'})}>
         <div>Holy Matrimony</div>
         <div>Saturday, 8 September 2018</div>
         <div>11:00 AM</div>
@@ -29,7 +29,8 @@ export default () =>
         <div>21 Bukit Batok Street 11</div>
         <div>Singapore 659673</div>
       </div>
-      <div style={Object.assign({}, styles.card, { gridColumnStart: 5})}>
+      <div style={styles.divider}></div>
+      <div style={Object.assign({}, styles.card, { gridColumn: '6 / span 2'})}>
         <div>Wedding Reception</div>
         <div>Saturday, 15 September 2018</div>
         <div>7:00 PM</div>
@@ -38,11 +39,14 @@ export default () =>
         <div>Jl. Letnan Jenderal S. Parman</div>
         <div>West Jakarta 11470</div>
       </div>
+      <div style={styles.rsvpButtonContainer}>
+        <button type='button' style={styles.rsvpButton}>RSVP</button>
+      </div>
     </div>
-    <button type='button'>RSVP</button>
+    <img style={styles.floral} src="/static/img/floral3.png"/>
   </div>
   <div style={styles.content2}>
-    <div style={styles.subtitle}>Our Wedding</div>
+    <div style={styles.subtitle}>Our Story</div>
   </div>
 </div>
 
@@ -90,13 +94,21 @@ const styles = {
     position: 'absolute',
     zIndex: '-1',
   },
+  floral2: {
+    width: '50%'
+  },
   weddingDetails: {
     display: 'grid',
-    gridTemplateColumns: 'repeat(8, 1fr)'
+    gridTemplateColumns: 'repeat(4, 1fr) 1em repeat(4, 1fr)',
+    gridGap: '1em',
   },
   card: {
   },
-  rsvpButton: {
-    textAlign: 'center'
+  divider: {
+    borderLeft: '1px solid black',
+  },
+  rsvpButtonContainer: {
+    gridColumn: '3 / span 5',
+    textAlign: 'center',
   }
 }
