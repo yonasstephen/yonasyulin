@@ -1,4 +1,19 @@
 import Head from 'next/head';
+import Link from 'next/link';
+import styled from 'styled-components';
+
+const RSVPButton = styled.button`
+  background-color: #ffdcd3;
+  border: none;
+  box-shadow: 0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
+  padding: 1em 2em;
+  font-weight: bold;
+
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 7px 14px rgba(50,50,93,.1), 0 3px 6px rgba(0,0,0,.08);
+  }
+`
 
 export default () =>
 <div style={styles.container}>
@@ -20,7 +35,7 @@ export default () =>
     />
     <div style={styles.subtitle}>Our Wedding</div>
     <div style={styles.weddingDetails}>
-      <div style={Object.assign({}, styles.card, { gridColumn: '3 / span 2'})}>
+      <div style={Object.assign({}, styles.card, { gridColumn: '3 / span 2', textAlign: 'right'})}>
         <div>Holy Matrimony</div>
         <div>Saturday, 8 September 2018</div>
         <div>11:00 AM</div>
@@ -40,10 +55,12 @@ export default () =>
         <div>West Jakarta 11470</div>
       </div>
       <div style={styles.rsvpButtonContainer}>
-        <button type='button' style={styles.rsvpButton}>RSVP</button>
+        <Link href='/rsvp'>
+          <RSVPButton type='button' onClick=''>RSVP</RSVPButton>
+        </Link>
       </div>
+      <img style={styles.floral3} src="/static/img/floral3.png"/>
     </div>
-    <img style={styles.floral} src="/static/img/floral3.png"/>
   </div>
   <div style={styles.content2}>
     <div style={styles.subtitle}>Our Story</div>
@@ -72,6 +89,7 @@ const styles = {
   },
   content2: {
     gridArea: 'content2',
+    backgroundColor: '#ffdcd3'
   },
   title: {
     color: 'black',
@@ -99,7 +117,8 @@ const styles = {
   },
   weddingDetails: {
     display: 'grid',
-    gridTemplateColumns: 'repeat(4, 1fr) 1em repeat(4, 1fr)',
+    gridTemplateColumns: 'repeat(4, 1fr) 1px repeat(4, 1fr)',
+    gridTemplateRows: '1fr 2em 5em',
     gridGap: '1em',
   },
   card: {
@@ -110,5 +129,10 @@ const styles = {
   rsvpButtonContainer: {
     gridColumn: '3 / span 5',
     textAlign: 'center',
+  },
+  floral3: {
+    gridColumn: '3 / span 5',
+    width: '100%',
+    transform: 'rotate(180deg)'
   }
 }
