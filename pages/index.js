@@ -5,6 +5,7 @@ export default () =>
 <div style={styles.container}>
   <div style={styles.content0}>
     <div style={styles.title}>Yonas & Yulin</div>
+    <div style={styles.title}>{`We can't wait to share our special day with you <3`}</div>
   </div>
   <div style={styles.content1}>
     <img style={

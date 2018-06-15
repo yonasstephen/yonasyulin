@@ -1,10 +1,16 @@
 import { withFormik } from 'formik';
 
+
 import Button from '../components/button'
 import TextBox from '../components/textbox'
+import RadioButton from '../components/radiobutton'
 import { getFormData } from '../utilities/helper'
 
-const formURL = 'https://script.google.com/macros/s/AKfycby7BDqLK2YNyaksP4ypUfLtnLN2rx9RpySq44Wscv1ZF-I8E3Q/exec'
+const formURL = process.env.FORM_URL
+const options = [
+  {caption: 'I will be there', value: 1},
+  {caption: "Sorry I can't make it", value: 0},
+]
 
 const InnerForm = ({
   errors,
@@ -16,6 +22,11 @@ const InnerForm = ({
   isSubmitting
 }) => (
   <form onSubmit={handleSubmit} style={styles.form}>
+    <div style={styles.isComingContainer}>
+      <RadioButton
+        options={options}
+      />
+    </div>
     <TextBox
       error={errors.name}
       id='name'
@@ -91,27 +102,37 @@ export default () =>
 
 const styles = {
   container: {
-
+    backgroundColor: '#cbece4',
+    height: '100%',
   },
   title: {
-    textAlign: 'center'
+    margin: '0',
+    padding: '1em',
+    textAlign: 'center',
   },
   form: {
     display: 'grid',
     gridTemplateColumns: 'repeat(5, 1fr)',
-    gridTemplateRows: 'repeat(2, 1fr) 2em',
+    gridTemplateRows: 'repeat(3, 1fr) 2em',
     gridGap: '.5em'
+  },
+  isComingContainer: {
+    gridColumn: '2 / span 3',
+    gridRow: '1',
+    display: 'grid',
+    gridTemplateColumns: 'repeat(2, 50%)',
+    gridTemplateRows: '1fr'
   },
   inputName: {
     gridColumn: '2 / span 3',
-    gridRow: '1',
+    gridRow: '2',
   },
   inputPax: {
     gridColumn: '2 / span 3',
-    gridRow: '2',
+    gridRow: '3',
   },
   submitButton: {
     gridColumn: '3',
-    gridRow: '3'
+    gridRow: '4'
   }
 }
