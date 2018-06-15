@@ -1,26 +1,8 @@
-import Head from 'next/head';
 import Link from 'next/link';
-import styled from 'styled-components';
-
-const RSVPButton = styled.button`
-  background-color: #ffdcd3;
-  border: none;
-  box-shadow: 0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
-  padding: 1em 2em;
-  font-weight: bold;
-
-  &:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 7px 14px rgba(50,50,93,.1), 0 3px 6px rgba(0,0,0,.08);
-  }
-`
+import Button from '../components/button';
 
 export default () =>
 <div style={styles.container}>
-  <Head>
-    <title>Yonas & Yulin</title>
-    <link href="/static/style.css" rel="stylesheet" />
-  </Head>
   <div style={styles.content0}>
     <div style={styles.title}>Yonas & Yulin</div>
   </div>
@@ -56,7 +38,7 @@ export default () =>
       </div>
       <div style={styles.rsvpButtonContainer}>
         <Link href='/rsvp'>
-          <RSVPButton type='button' onClick=''>RSVP</RSVPButton>
+          <Button type='button' onClick=''>RSVP</Button>
         </Link>
       </div>
       <img style={styles.floral3} src="/static/img/floral3.png"/>
