@@ -84,7 +84,11 @@ const InnerForm = ({
 }
 
 const RSVPForm = withFormik({
-  mapPropsToValues: props => ({ name: '' }),
+  mapPropsToValues: props => ({
+    name: '',
+    locations: [],
+    pax: ''
+  }),
   validate: (values, props) => {
     const errors = {}
     if (!values.is_coming) {
@@ -123,7 +127,6 @@ const RSVPForm = withFormik({
       .then(res => {
         console.log('Success: ', res)
         resetForm({
-          id: '',
           name: '',
           locations: [],
           pax: ''
