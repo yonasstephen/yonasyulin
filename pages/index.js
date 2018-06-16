@@ -21,6 +21,19 @@ const Subtitle = styled.h1`
   text-align: center;
 `
 
+const Story = styled.p`
+  color: #6f6e77;
+  font-size: 1.2em;
+  line-height: 1.5em;
+  margin: auto;
+  max-width: 750px;
+  padding: 0 2em;
+  text-align: center;
+
+  @media (max-width: 414px) {
+  }
+`
+
 export default () => (
   <div style={{ height: '100%' }}>
     <section style={styles.background} />
@@ -30,6 +43,29 @@ export default () => (
       </section>
       <section style={styles.content1}>
         <Subtitle>Our Story</Subtitle>
+        <Story>
+          We met in the summer of 2010 when both were freshmen at Nanyang
+          Technological University Singapore. Two persons from the same hometown
+          met for the first time in the tiny red dot pursuing their dreams. It
+          was not straight up mutual interest since the first meet, our story
+          took the longer route.
+          <br />
+          <br />
+          But eventually love finds its way 2 years later when we officially
+          committed to each other. Ever since then millions of tears and
+          laughters have beens shared, 3 continents have we conquered, thousands
+          of "what should we eat for dinner" have been answered.
+          <br />
+          <br />
+          Fast forward to a little over a year ago, Yonas proposed to Yulin at
+          604 metres above sea level, over 10 thousands kilometres away from
+          home and No(r)way... she said YES! This wedding will definitely be one
+          of the most important moments in our life and we want to share the
+          memories with people that we care the most.
+          <br />
+          <br />
+          &hearts;
+        </Story>
       </section>
       <section style={styles.content2}>
         <img style={styles.floral} src="/static/img/floral3.png" />
@@ -79,7 +115,7 @@ const styles = {
     height: '100%',
     display: 'grid',
     gridTemplateColumns: '1fr',
-    gridTemplateRows: '100% 100% 100%',
+    gridTemplateRows: '100% auto 100%',
     gridTemplateAreas: `
       'content0'
       'content1'
@@ -102,7 +138,8 @@ const styles = {
   content1: {
     backgroundColor: '#e1efdb',
     gridArea: 'content1',
-    paddingTop: '2em'
+    paddingTop: '2em',
+    paddingBottom: '10em'
   },
   content2: {
     gridArea: 'content2',
@@ -115,6 +152,7 @@ const styles = {
   floral: {
     width: '50%',
     maxWidth: '35em',
+    minWidth: '25em',
     left: '50%',
     transform: 'translate3d(-50%, -50%, 0) rotate(180deg)',
     position: 'absolute'
