@@ -12,8 +12,8 @@ const presenceOptions = [
   { caption: "Sorry I can't make it", value: 0 }
 ]
 const locationOptions = [
-  { caption: 'Singapore, 8 Sep 2018', value: 'sg' },
-  { caption: 'Jakarta, 15 Sep 2018', value: 'jkt' }
+  { caption: 'Singapore, 8 Sep 2018 (11 AM)', value: 'sg' },
+  { caption: 'Jakarta, 15 Sep 2018 (7 PM)', value: 'jkt' }
 ]
 
 const InnerForm = ({
@@ -77,6 +77,7 @@ const InnerForm = ({
         />
       )}
       <Button style={styles.submitButton} type="submit" disabled={isSubmitting}>
+        {/* {isSubmitting && <Spinner name="line-scale" color="white" />} */}
         Submit
       </Button>
     </form>
@@ -177,6 +178,9 @@ const styles = {
   },
   submitButton: {
     gridColumn: '3',
-    gridRow: '5'
+    gridRow: '5',
+    width: '10em',
+    alignSelf: 'center',
+    justifySelf: 'center'
   }
 }

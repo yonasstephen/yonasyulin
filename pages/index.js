@@ -1,53 +1,78 @@
-import Link from 'next/link';
-import Button from '../components/button';
+import Link from 'next/link'
+import styled from 'styled-components'
 
-export default () =>
-<div style={styles.container}>
-  <div style={styles.content0}>
-    <div style={styles.title}>Yonas & Yulin</div>
-  </div>
-  <div style={styles.content1}>
-    <img style={
-      Object.assign({}, styles.floral, {left: '25%'}
-      )} src="/static/img/floral1.png"
-    />
-    <img style={
-      Object.assign({}, styles.floral, {right: '25%', transform: 'scaleX(-1)'}
-      )} src="/static/img/floral1.png"
-    />
-    <div style={styles.subtitle}>Our Wedding</div>
-    <div style={styles.weddingDetails}>
-      <div style={Object.assign({}, styles.card, { gridColumn: '3 / span 2', textAlign: 'right'})}>
-        <div>Holy Matrimony</div>
-        <div>Saturday, 8 September 2018</div>
-        <div>11:00 AM</div>
-        <div>Bukit Batok Presbyterian Church</div>
-        <div>West Sanctuary, 2nd Floor</div>
-        <div>21 Bukit Batok Street 11</div>
-        <div>Singapore 659673</div>
-      </div>
-      <div style={styles.divider}></div>
-      <div style={Object.assign({}, styles.card, { gridColumn: '6 / span 2'})}>
-        <div>Wedding Reception</div>
-        <div>Saturday, 15 September 2018</div>
-        <div>7:00 PM</div>
-        <div>Hotel Ciputra</div>
-        <div>Dian Ballroom, 6th Floor</div>
-        <div>Jl. Letnan Jenderal S. Parman</div>
-        <div>West Jakarta 11470</div>
-      </div>
-      <div style={styles.rsvpButtonContainer}>
-        <Link href='/rsvp'>
-          <Button type='button' onClick=''>RSVP</Button>
-        </Link>
-      </div>
-      <img style={styles.floral3} src="/static/img/floral3.png"/>
+import Button from '../components/button'
+
+const Title = styled.h1`
+  color: black;
+  font-family: great_vibes, adlery_swash;
+  font-size: 5em;
+  font-weight: lighter;
+  text-align: center;
+  margin-top: 2em;
+
+  @media (max-width: 414px) {
+  }
+`
+
+const Subtitle = styled.h1`
+  font-family: adlery_swash;
+  font-size: 5em;
+  text-align: center;
+`
+
+export default () => (
+  <div style={{ height: '100%' }}>
+    <section style={styles.background} />
+    <div style={styles.container}>
+      <section style={styles.content0}>
+        <Title>Yonas & Yulin</Title>
+      </section>
+      <section style={styles.content1}>
+        <Subtitle>Our Story</Subtitle>
+      </section>
+      <section style={styles.content2}>
+        <img style={styles.floral} src="/static/img/floral3.png" />
+        <Subtitle style={{ paddingTop: '1em' }}>Our Wedding</Subtitle>
+        <div style={styles.weddingDetails}>
+          <div
+            style={Object.assign({}, styles.card, {
+              gridColumn: '3 / span 2',
+              textAlign: 'right'
+            })}
+          >
+            <div>Holy Matrimony</div>
+            <div>Saturday, 8 September 2018</div>
+            <div>11:00 AM</div>
+            <div>Bukit Batok Presbyterian Church</div>
+            <div>West Sanctuary, 2nd Floor</div>
+            <div>21 Bukit Batok Street 11</div>
+            <div>Singapore 659673</div>
+          </div>
+          <div style={styles.divider} />
+          <div
+            style={Object.assign({}, styles.card, { gridColumn: '6 / span 2' })}
+          >
+            <div>Wedding Reception</div>
+            <div>Saturday, 15 September 2018</div>
+            <div>7:00 PM</div>
+            <div>Hotel Ciputra</div>
+            <div>Dian Ballroom, 6th Floor</div>
+            <div>Jl. Letnan Jenderal S. Parman</div>
+            <div>West Jakarta 11470</div>
+          </div>
+          <div style={styles.rsvpButtonContainer}>
+            <Link href="/rsvp">
+              <Button type="button" onClick="" style={styles.rsvpButton}>
+                RSVP
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
     </div>
   </div>
-  <div style={styles.content2}>
-    <div style={styles.subtitle}>Our Story</div>
-  </div>
-</div>
+)
 
 const styles = {
   container: {
@@ -61,11 +86,21 @@ const styles = {
       'content2'
     `
   },
+  background: {
+    backgroundImage: 'url("/static/img/0.jpg")',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center center',
+    position: 'fixed',
+    width: '100%',
+    height: '100%',
+    zIndex: '-1'
+  },
   content0: {
-    gridArea: 'content0',
-    backgroundImage: 'url("https://images.unsplash.com/photo-1489094889106-39069373d6ef?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=62e496e0a9d0cec2476c2896f61df1a4&auto=format&fit=crop&w=1952&q=80")'
+    gridArea: 'content0'
   },
   content1: {
+    backgroundColor: '#e1efdb',
     gridArea: 'content1',
     paddingTop: '2em'
   },
@@ -73,48 +108,33 @@ const styles = {
     gridArea: 'content2',
     backgroundColor: '#ffdcd3'
   },
-  title: {
-    color: 'black',
-    fontFamily: 'great_vibes,adlery_swash',
-    fontSize: '5em',
-    textAlign: 'center',
-    marginTop: '2em',
-  },
-  subtitle: {
-    fontFamily: 'adlery_swash',
-    fontSize: '5em',
-    textAlign: 'center',
-    marginTop: '15%',
-  },
+  subtitle: {},
   image: {
-    width: '100%',
+    width: '100%'
   },
   floral: {
-    width: '30%',
-    position: 'absolute',
-    zIndex: '-1',
-  },
-  floral2: {
-    width: '50%'
+    width: '50%',
+    maxWidth: '35em',
+    left: '50%',
+    transform: 'translate3d(-50%, -50%, 0) rotate(180deg)',
+    position: 'absolute'
   },
   weddingDetails: {
     display: 'grid',
     gridTemplateColumns: 'repeat(4, 1fr) 1px repeat(4, 1fr)',
     gridTemplateRows: '1fr 2em 5em',
-    gridGap: '1em',
+    gridGap: '1em'
   },
-  card: {
-  },
+  card: {},
   divider: {
-    borderLeft: '1px solid black',
+    borderLeft: '1px solid black'
   },
   rsvpButtonContainer: {
     gridColumn: '3 / span 5',
-    textAlign: 'center',
+    textAlign: 'center'
   },
-  floral3: {
-    gridColumn: '3 / span 5',
-    width: '100%',
-    transform: 'rotate(180deg)'
+  rsvpButton: {
+    backgroundColor: '#d78380',
+    color: '#ffdcd3'
   }
 }
