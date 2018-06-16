@@ -9,25 +9,24 @@ export default ({
   value
 }) => (
   <div style={Object.assign({}, style, styles.container)}>
-    <label
-      style={styles.label}
-      htmlFor={`id-${name}`}>
+    <label style={styles.label} htmlFor={`id-${name}`}>
       {title}
     </label>
     <input
       id={`id-${name}`}
-      type='text'
+      type="text"
       name={name}
       onChange={onChange}
       onBlur={onBlur}
       value={value}
-      style={styles.input}/>
+      style={styles.input}
+    />
     {touched && error && <div style={styles.error}>{error}</div>}
   </div>
 )
 
 const styles = {
-  container : {
+  container: {
     display: 'grid',
     gridTemplateRows: '1fr 1fr'
   },
@@ -35,7 +34,7 @@ const styles = {
     color: 'red'
   },
   label: {
-
+    fontWeight: 'bold'
   },
   input: {
     border: '1px solid transparent',
@@ -45,6 +44,6 @@ const styles = {
     height: '1em',
     outline: 'none',
     padding: '.6em .8em',
-    transition: 'box-shadow 150ms ease',
+    transition: 'box-shadow 150ms ease'
   }
 }

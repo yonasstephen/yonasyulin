@@ -11,3 +11,4 @@ This is a static wedding website for RSVP. As a software developer, I took this 
 # References
 1. [HTML Form to Google Sheets](https://github.com/jamiewilson/form-to-google-sheets)
 2. [Adding dotenv to NextJS](https://medium.com/the-tech-bench/next-js-environment-variables-d2f6ea1a1dca)
+3. [Configure GoDaddy DNS to Heroku App](https://github.com/IcaliaLabs/guides/wiki/Domain-configuration-using-Heroku-&-GoDaddy)

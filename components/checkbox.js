@@ -2,18 +2,10 @@ import styled from 'styled-components'
 
 const Container = styled.div``
 
-const RadioButton = ({
-  id,
-  caption,
-  checked,
-  name,
-  onBlur,
-  onChange,
-  value
-}) => (
+const Checkbox = ({ id, caption, checked, name, onBlur, onChange, value }) => (
   <Container>
     <input
-      type="radio"
+      type="checkbox"
       checked={checked}
       id={id}
       onBlur={onBlur}
@@ -31,20 +23,33 @@ export default ({
   onBlur,
   onChange,
   options,
-  selectedValue,
+  selectedValues,
   title,
   touched
 }) => {
-  const renderRadiobuttons = () =>
+  const handleCheckboxChange = e => {
+    const target = e.currentTarget
+    let valueArray = selectedValues || []
+    if (target.checked) {
+      valueArray.push(target.value)
+    } else {
+      valueArray.splice(valueArray.indexOf(target.value), 1)
+    }
+
+    // calls setFieldValue
+    onChange(name, valueArray)
+  }
+
+  const renderCheckboxes = () =>
     options.map(({ caption, value }) => (
-      <RadioButton
+      <Checkbox
         caption={caption}
-        checked={selectedValue == value}
+        checked={selectedValues && selectedValues.includes(value)}
         id={`id-${name}-${value}`}
         key={value}
         name={name}
         onBlur={onBlur}
-        onChange={onChange}
+        onChange={handleCheckboxChange}
         value={value}
       />
     ))
@@ -52,12 +57,11 @@ export default ({
   return (
     <div>
       <div style={styles.title}>{title}</div>
-      {renderRadiobuttons()}
-      {error && <div style={styles.error}>{error}</div>}
+      {renderCheckboxes()}
+      {touched && error && <div style={styles.error}>{error}</div>}
     </div>
   )
 }
-
 const styles = {
   error: {
     color: 'red'
