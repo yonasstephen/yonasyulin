@@ -23,6 +23,7 @@ const Subtitle = styled.h1`
 
 const Story = styled.p`
   color: #6f6e77;
+  font-family: tajawal, sans-serif;
   font-size: 1.2em;
   line-height: 1.5em;
   margin: auto;
@@ -32,6 +33,39 @@ const Story = styled.p`
 
   @media (max-width: 414px) {
   }
+`
+
+const Card = styled.div`
+  background: #c7e0c5;
+  border-radius: 4px;
+  box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07);
+  font-family: tajawal, sans-serif;
+  line-height: 1.5em;
+  padding: 1em;
+  position: relative;
+  overflow: hidden;
+`
+
+const CardTitle = styled.h3`
+  font-family: berkshire_swash;
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 0.5em 0;
+`
+
+const CardIcon = styled.img`
+  position: absolute;
+  width: 7em;
+`
+
+const WeddingVenue = styled.a`
+  color: #33771f;
+  font-weight: bold;
+  text-decoration-color: #33771f;
+`
+
+const WeddingAddress = styled.div`
+  color: #33771f;
 `
 
 export default () => (
@@ -53,7 +87,7 @@ export default () => (
           <br />
           But eventually love finds its way 2 years later when we officially
           committed to each other. Ever since then millions of tears and
-          laughters have beens shared, 3 continents have we conquered, thousands
+          laughters have been shared, 3 continents have we conquered, thousands
           of "what should we eat for dinner" have been answered.
           <br />
           <br />
@@ -64,39 +98,50 @@ export default () => (
           memories with people that we care the most.
           <br />
           <br />
-          &hearts;
+          <img src="/static/img/heart.svg" style={{ width: '1.5em' }} />
         </Story>
       </section>
       <section style={styles.content2}>
         <img style={styles.floral} src="/static/img/floral3.png" />
         <Subtitle style={{ paddingTop: '1em' }}>Our Wedding</Subtitle>
+        <div />
         <div style={styles.weddingDetails}>
-          <div
-            style={Object.assign({}, styles.card, {
-              gridColumn: '3 / span 2',
-              textAlign: 'right'
-            })}
-          >
-            <div>Holy Matrimony</div>
-            <div>Saturday, 8 September 2018</div>
-            <div>11:00 AM</div>
-            <div>Bukit Batok Presbyterian Church</div>
-            <div>West Sanctuary, 2nd Floor</div>
-            <div>21 Bukit Batok Street 11</div>
-            <div>Singapore 659673</div>
-          </div>
-          <div style={styles.divider} />
-          <div
-            style={Object.assign({}, styles.card, { gridColumn: '6 / span 2' })}
-          >
-            <div>Wedding Reception</div>
-            <div>Saturday, 15 September 2018</div>
-            <div>7:00 PM</div>
-            <div>Hotel Ciputra</div>
-            <div>Dian Ballroom, 6th Floor</div>
-            <div>Jl. Letnan Jenderal S. Parman</div>
-            <div>West Jakarta 11470</div>
-          </div>
+          <Card style={{ textAlign: 'right' }}>
+            <CardIcon
+              src="/static/img/singapore.svg"
+              style={{ left: '-1.5em' }}
+            />
+            <CardTitle>Holy Matrimony</CardTitle>
+            <div>Sat, 8 September 2018</div>
+            <div style={styles.weddingTime}>11:00 AM</div>
+            <WeddingVenue
+              href="https://www.google.com/maps/place/Bukit+Batok+Presbyterian+Church/@1.3492122,103.7409816,17z/data=!3m1!4b1!4m5!3m4!1s0x31da103c8b347d05:0xf437a7b7d5d020f6!8m2!3d1.3492122!4d103.7431703"
+              target="_blank"
+            >
+              Bukit Batok Presbyterian Church
+            </WeddingVenue>
+            <WeddingAddress>West Sanctuary, 2nd Floor</WeddingAddress>
+            <WeddingAddress>21 Bukit Batok Street 11</WeddingAddress>
+            <WeddingAddress>Singapore 659673</WeddingAddress>
+          </Card>
+          <Card>
+            <CardIcon
+              src="/static/img/jakarta.svg"
+              style={{ right: '-1.5em' }}
+            />
+            <CardTitle>Wedding Reception</CardTitle>
+            <div>Sat, 15 September 2018</div>
+            <div style={styles.weddingTime}>7:00 PM</div>
+            <WeddingVenue
+              href="https://www.google.com/maps/place/Hotel+Ciputra+Jakarta/@-6.168163,106.7842292,17z/data=!3m1!4b1!4m7!3m6!1s0x2e69f60404a5e893:0x6f9b862724e130c4!5m1!1s2018-06-25!8m2!3d-6.168163!4d106.7864179"
+              target="_blank"
+            >
+              Hotel Ciputra
+            </WeddingVenue>
+            <WeddingAddress>Dian Ballroom, 6th Floor</WeddingAddress>
+            <WeddingAddress>Jl. Letnan Jenderal S. Parman</WeddingAddress>
+            <WeddingAddress>West Jakarta 11470</WeddingAddress>
+          </Card>
           <div style={styles.rsvpButtonContainer}>
             <Link href="/rsvp">
               <Button type="button" onClick="" style={styles.rsvpButton}>
@@ -159,20 +204,24 @@ const styles = {
   },
   weddingDetails: {
     display: 'grid',
-    gridTemplateColumns: 'repeat(4, 1fr) 1px repeat(4, 1fr)',
-    gridTemplateRows: '1fr 2em 5em',
-    gridGap: '1em'
+    gridTemplateColumns: '1fr 1fr',
+    gridTemplateRows: '1fr 2em',
+    gridGap: '1em',
+    margin: 'auto',
+    maxWidth: '700px',
+    padding: '1em'
   },
-  card: {},
-  divider: {
-    borderLeft: '1px solid black'
+  weddingTime: {
+    fontFamily: 'tajawal',
+    fontWeight: 'bold'
   },
   rsvpButtonContainer: {
-    gridColumn: '3 / span 5',
+    gridColumn: '1 / 3',
     textAlign: 'center'
   },
   rsvpButton: {
     backgroundColor: '#d78380',
-    color: '#ffdcd3'
+    color: '#ffdcd3',
+    fontSize: '1em'
   }
 }
