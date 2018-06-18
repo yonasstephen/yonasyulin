@@ -157,8 +157,10 @@ export default () => (
         </div>
       </section>
       <footer style={styles.content3}>
-        <div style={{ textAlign: 'center', margin: '.5em' }}>
-          Made with &hearts; by yonas
+        <div style={{ fontSize: '1.5em', marginTop: '1em' }}>#TheJourneYY</div>
+        <div style={{ color: 'gray', margin: '.5em' }}>
+          Made with{' '}
+          <img src="/static/img/like.svg" style={{ height: '.8em' }} /> by yonas
         </div>
         <GithubLink>
           <a
@@ -214,7 +216,8 @@ const styles = {
   },
   content3: {
     gridArea: 'content3',
-    backgroundColor: 'rgba(255,255,255,0.8)'
+    backgroundColor: 'rgba(255,255,255,0.8)',
+    textAlign: 'center'
   },
   image: {
     width: '100%'
@@ -225,6 +228,8 @@ const styles = {
     minWidth: '25em',
     left: '50%',
     transform: 'translate3d(-50%, -50%, 0) rotate(180deg)',
+    WebkitTransform: 'translate3d(-50%, -50%, 0) rotate(180deg)',
+    msTransform: 'translate3d(-50%, -50%, 0) rotate(180deg)',
     position: 'absolute'
   },
   weddingDetails: {
