@@ -1,19 +1,64 @@
 import styled from 'styled-components'
 
-const Container = styled.div``
+const Container = styled.div`
+  display: block;
+  position: relative;
+  padding-left: 1.5em;
+  line-height: 1.5em;
+  cursor: pointer;
+  font-size: 1.2em;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+`
+const Input = styled.input`
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+`
+const Checkmark = styled.span`
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 1em;
+  width: 1em;
+  background-color: ${props => (props.checked ? '#2C9EDA' : '#eee')};
 
+  &:hover {
+    background-color: ${props => (props.checked ? '#2C9EDA' : '#ccc')};
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    display: ${props => (props.checked ? 'block' : 'none')};
+    left: 25%;
+    top: 40%;
+    width: 25%;
+    height: 50%;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg) translate3d(-50%, -50%, 0);
+    -ms-transform: rotate(45deg) translate3d(-50%, -50%, 0);
+    transform: rotate(45deg) translate3d(-50%, -50%, 0);
+  }
+`
 const Checkbox = ({ id, caption, checked, name, onBlur, onChange, value }) => (
   <Container>
-    <input
-      type="checkbox"
-      checked={checked}
-      id={id}
-      onBlur={onBlur}
-      onChange={onChange}
-      name={name}
-      value={value}
-    />
-    <label htmlFor={id}>{caption}</label>
+    <label htmlFor={id}>
+      {caption}
+      <Input
+        type="checkbox"
+        checked={checked}
+        id={id}
+        onBlur={onBlur}
+        onChange={onChange}
+        name={name}
+        value={value}
+      />
+      <Checkmark checked={checked} />
+    </label>
   </Container>
 )
 
@@ -64,9 +109,11 @@ export default ({
 }
 const styles = {
   error: {
-    color: 'red'
+    color: 'red',
+    marginTop: '.5em'
   },
   title: {
+    fontSize: '1.4em',
     fontWeight: 'bold'
   }
 }

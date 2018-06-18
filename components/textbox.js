@@ -28,12 +28,14 @@ export default ({
 const styles = {
   container: {
     display: 'grid',
-    gridTemplateRows: '1fr 1fr'
+    gridTemplateRows: 'auto 1fr'
   },
   error: {
-    color: 'red'
+    color: 'red',
+    marginTop: '.5em'
   },
   label: {
+    fontSize: '1.4em',
     fontWeight: 'bold'
   },
   input: {

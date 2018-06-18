@@ -139,7 +139,7 @@ const RSVPForm = withFormik({
 
 export default () => (
   <div style={styles.container}>
-    <h1 style={styles.title}>RSVP here</h1>
+    <h1 style={styles.title}>RSVP</h1>
     <RSVPForm />
   </div>
 )
@@ -157,8 +157,8 @@ const styles = {
   form: {
     display: 'grid',
     gridTemplateColumns: 'repeat(5, 1fr)',
-    gridTemplateRows: 'repeat(4, 1fr) 2em',
-    gridGap: '.5em'
+    gridTemplateRows: 'repeat(4, auto) 2em',
+    gridGap: '1.5em'
   },
   radioGroupIsComing: {
     gridColumn: '2 / span 3',

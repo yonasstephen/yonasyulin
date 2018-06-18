@@ -157,9 +157,11 @@ export default () => (
         </div>
       </section>
       <footer style={styles.content3}>
-        <div style={{ fontSize: '1.5em', marginTop: '1em' }}>#TheJourneYY</div>
+        <div style={{ fontSize: '1.5em', marginTop: '1em' }}>
+          #YonasYulin #TheJourneYY
+        </div>
         <div style={{ color: 'gray', margin: '.5em' }}>
-          Made with{' '}
+          Made with
           <img src="/static/img/like.svg" style={{ height: '.8em' }} /> by yonas
         </div>
         <GithubLink>

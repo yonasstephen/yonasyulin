@@ -12,16 +12,18 @@ const RadioButton = ({
   value
 }) => (
   <Container>
-    <input
-      type="radio"
-      checked={checked}
-      id={id}
-      onBlur={onBlur}
-      onChange={onChange}
-      name={name}
-      value={value}
-    />
-    <label htmlFor={id}>{caption}</label>
+    <label htmlFor={id}>
+      {caption}
+      <input
+        type="radio"
+        checked={checked}
+        id={id}
+        onBlur={onBlur}
+        onChange={onChange}
+        name={name}
+        value={value}
+      />
+    </label>
   </Container>
 )
 
@@ -60,9 +62,11 @@ export default ({
 
 const styles = {
   error: {
-    color: 'red'
+    color: 'red',
+    marginTop: '.5em'
   },
   title: {
+    fontSize: '1.4em',
     fontWeight: 'bold'
   }
 }
