@@ -5,20 +5,23 @@ import Document, { Head, Main, NextScript } from 'next/document'
 import { ServerStyleSheet } from 'styled-components'
 
 export default class MyDocument extends Document {
-  static getInitialProps ({ renderPage }) {
+  static getInitialProps({ renderPage }) {
     const sheet = new ServerStyleSheet()
-    const page = renderPage(App => props => sheet.collectStyles(<App {...props} />))
+    const page = renderPage(App => props =>
+      sheet.collectStyles(<App {...props} />)
+    )
     const styleTags = sheet.getStyleElement()
     return { ...page, styleTags }
   }
 
-  render () {
+  render() {
     return (
       <html>
         <Head>
           <title>Yonas & Yulin</title>
           <link href="/static/style.css" rel="stylesheet" />
           {this.props.styleTags}
+          <script async defer src="https://buttons.github.io/buttons.js" />
         </Head>
         <body>
           <Main />

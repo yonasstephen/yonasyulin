@@ -68,6 +68,11 @@ const WeddingAddress = styled.div`
   color: #33771f;
 `
 
+const GithubLink = styled.div`
+  text-align: center;
+  margin-bottom: 1em;
+`
+
 export default () => (
   <div style={{ height: '100%' }}>
     <section style={styles.background} />
@@ -151,6 +156,22 @@ export default () => (
           </div>
         </div>
       </section>
+      <footer style={styles.content3}>
+        <div style={{ textAlign: 'center', margin: '.5em' }}>
+          Made with &hearts; by yonas
+        </div>
+        <GithubLink>
+          <a
+            class="github-button"
+            href="https://github.com/yonasstephen/yonasyulin"
+            data-size="large"
+            data-show-count="true"
+            aria-label="Star yonasstephen/yonasyulin on GitHub"
+          >
+            Star
+          </a>
+        </GithubLink>
+      </footer>
     </div>
   </div>
 )
@@ -160,11 +181,12 @@ const styles = {
     height: '100%',
     display: 'grid',
     gridTemplateColumns: '1fr',
-    gridTemplateRows: '100% auto 100%',
+    gridTemplateRows: '100% auto 100% auto',
     gridTemplateAreas: `
       'content0'
       'content1'
       'content2'
+      'content3'
     `
   },
   background: {
@@ -190,7 +212,10 @@ const styles = {
     gridArea: 'content2',
     backgroundColor: '#ffdcd3'
   },
-  subtitle: {},
+  content3: {
+    gridArea: 'content3',
+    backgroundColor: 'rgba(255,255,255,0.8)'
+  },
   image: {
     width: '100%'
   },
