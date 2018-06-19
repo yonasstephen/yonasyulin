@@ -35,6 +35,7 @@ const styles = {
     marginTop: '.5em'
   },
   label: {
+    color: '#14735c',
     fontSize: '1.4em',
     fontWeight: 'bold'
   },

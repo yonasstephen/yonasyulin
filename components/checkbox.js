@@ -23,10 +23,10 @@ const Checkmark = styled.span`
   left: 0;
   height: 1em;
   width: 1em;
-  background-color: ${props => (props.checked ? '#2C9EDA' : '#eee')};
+  background-color: ${props => (props.checked ? '#2C9EDA' : '#fff')};
 
   &:hover {
-    background-color: ${props => (props.checked ? '#2C9EDA' : '#ccc')};
+    background-color: ${props => (props.checked ? '#2C9EDA' : '#eee')};
   }
 
   &::after {
@@ -113,6 +113,7 @@ const styles = {
     marginTop: '.5em'
   },
   title: {
+    color: '#14735c',
     fontSize: '1.4em',
     fontWeight: 'bold'
   }

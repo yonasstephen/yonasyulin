@@ -177,6 +177,8 @@ const styles = {
     gridRow: '4'
   },
   submitButton: {
+    backgroundColor: '#d78380',
+    color: 'white',
     gridColumn: '3',
     gridRow: '5',
     width: '10em',
