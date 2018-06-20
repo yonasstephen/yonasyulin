@@ -209,7 +209,7 @@ const styles = {
     height: '100%',
     display: 'grid',
     gridTemplateColumns: '1fr',
-    gridTemplateRows: '100% auto 100% auto',
+    gridTemplateRows: '100% repeat(3, auto)',
     gridTemplateAreas: `
       'content0'
       'content1'
@@ -238,7 +238,8 @@ const styles = {
   },
   content2: {
     gridArea: 'content2',
-    backgroundColor: '#ffdcd3'
+    backgroundColor: '#ffdcd3',
+    paddingBottom: '4em'
   },
   content3: {
     gridArea: 'content3',
