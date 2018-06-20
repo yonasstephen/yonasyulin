@@ -1,10 +1,13 @@
 import { withFormik } from 'formik'
+import { ToastContainer, toast } from 'react-toastify'
 
 import Button from '../components/button'
 import TextBox from '../components/textbox'
 import RadioButton from '../components/radiobutton'
 import Checkbox from '../components/checkbox'
 import { getFormData, uuidv4 } from '../utilities/helper'
+
+import 'react-toastify/dist/ReactToastify.css'
 
 const formURL = process.env.FORM_URL
 const presenceOptions = [
@@ -77,9 +80,12 @@ const InnerForm = ({
         />
       )}
       <Button style={styles.submitButton} type="submit" disabled={isSubmitting}>
-        {/* {isSubmitting && <Spinner name="line-scale" color="white" />} */}
-        Submit
+        {isSubmitting && (
+          <img src="/static/img/bars.svg" style={styles.spinner} />
+        )}
+        <span style={{}}>Submit</span>
       </Button>
+      <ToastContainer />
     </form>
   )
 }
@@ -126,7 +132,11 @@ const RSVPForm = withFormik({
 
     fetch(formURL, { method: 'POST', body: getFormData(values) })
       .then(res => {
-        console.log('Success: ', res)
+        toast('Thank you for your RSVP!', {
+          className: 'toast-background',
+          bodyClassName: 'toast-body',
+          progressClassName: 'toast-progress'
+        })
         resetForm({
           name: '',
           locations: [],
@@ -177,12 +187,21 @@ const styles = {
     gridRow: '4'
   },
   submitButton: {
+    alignSelf: 'center',
     backgroundColor: '#d78380',
     color: 'white',
+    display: 'flex',
+    fontSize: '1em',
     gridColumn: '3',
     gridRow: '5',
-    width: '10em',
+    justifySelf: 'center',
+    lineHeight: '2em',
+    padding: '0.2em 1em',
+    width: 'auto'
+  },
+  spinner: {
     alignSelf: 'center',
-    justifySelf: 'center'
+    height: '1.5em',
+    marginRight: '.5em'
   }
 }

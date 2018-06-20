@@ -19,7 +19,8 @@ export default class MyDocument extends Document {
       <html>
         <Head>
           <title>Yonas & Yulin</title>
-          <link href="/static/style.css" rel="stylesheet" />
+          <link rel="stylesheet" href="/_next/static/style.css" />
+          <link rel="stylesheet" href="/static/style.css" />
           {this.props.styleTags}
           <script async defer src="https://buttons.github.io/buttons.js" />
         </Head>

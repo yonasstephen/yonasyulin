@@ -39,3 +39,17 @@ body {
   margin: 0;
   font-family: tajawal;
 }
+
+.toast-background {
+  background-color: #3da241;
+}
+
+.toast-body {
+  color: #fff;
+  font-family: tajawal;
+  font-size: 1.2em;
+}
+
+.toast-progress {
+  background: linear-gradient(-12deg, #afe6cd, #bbd487);
+}
