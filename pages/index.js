@@ -1,5 +1,8 @@
 import Link from 'next/link'
 import styled from 'styled-components'
+import moment from 'moment'
+import countdown from 'countdown'
+import momentCountdown from 'moment-countdown'
 
 import Button from '../components/button'
 
@@ -33,6 +36,19 @@ const Story = styled.p`
 
   @media (max-width: 414px) {
   }
+`
+
+const Countdown = styled.div`
+  color: #c7a298;
+  font-size: 1.5em;
+  text-align: center;
+`
+
+const CountdownNumber = styled.span`
+  color: #e47077;
+  font-size: 1.2em;
+  font-weight: bold;
+  margin: 0 0.2em;
 `
 
 const Card = styled.div`
@@ -73,113 +89,121 @@ const GithubLink = styled.div`
   margin-bottom: 1em;
 `
 
-export default () => (
-  <div style={{ height: '100%' }}>
-    <section style={styles.background} />
-    <div style={styles.container}>
-      <section style={styles.content0}>
-        <Title>Yonas & Yulin</Title>
-      </section>
-      <section style={styles.content1}>
-        <Subtitle>Our Story</Subtitle>
-        <Story>
-          We met in the summer of 2010 when both were freshmen at Nanyang
-          Technological University Singapore. Two persons from the same hometown
-          met for the first time in the tiny red dot pursuing their dreams. It
-          was not straight up mutual interest since the first meet, our story
-          took the longer route.
-          <br />
-          <br />
-          But eventually love finds its way 2 years later when we officially
-          committed to each other. Ever since then millions of tears and
-          laughters have been shared, 3 continents have we conquered, thousands
-          of "what should we eat for dinner" have been answered.
-          <br />
-          <br />
-          Fast forward to a little over a year ago, Yonas proposed to Yulin at
-          604 metres above sea level, over 10 thousands kilometres away from
-          home and No(r)way... she said YES! This wedding will definitely be one
-          of the most important moments in our life and we want to share the
-          memories with people that we care the most.
-          <br />
-          <br />
-          <img src="/static/img/heart.svg" style={{ width: '1.5em' }} />
-        </Story>
-      </section>
-      <section style={styles.content2}>
-        <img style={styles.floral} src="/static/img/floral3.png" />
-        <Subtitle style={{ paddingTop: '1em' }}>Our Wedding</Subtitle>
-        <div />
-        <div style={styles.weddingDetails}>
-          <Card style={{ textAlign: 'right' }}>
-            <CardIcon
-              src="/static/img/singapore.svg"
-              style={{ left: '-1.5em' }}
-            />
-            <CardTitle>Holy Matrimony</CardTitle>
-            <div>Sat, 8 September 2018</div>
-            <div style={styles.weddingTime}>11:00 AM</div>
-            <WeddingVenue
-              href="https://www.google.com/maps/place/Bukit+Batok+Presbyterian+Church/@1.3492122,103.7409816,17z/data=!3m1!4b1!4m5!3m4!1s0x31da103c8b347d05:0xf437a7b7d5d020f6!8m2!3d1.3492122!4d103.7431703"
-              target="_blank"
-            >
-              Bukit Batok Presbyterian Church
-            </WeddingVenue>
-            <WeddingAddress>West Sanctuary, 2nd Floor</WeddingAddress>
-            <WeddingAddress>21 Bukit Batok Street 11</WeddingAddress>
-            <WeddingAddress>Singapore 659673</WeddingAddress>
-          </Card>
-          <Card>
-            <CardIcon
-              src="/static/img/jakarta.svg"
-              style={{ right: '-1.5em' }}
-            />
-            <CardTitle>Wedding Reception</CardTitle>
-            <div>Sat, 15 September 2018</div>
-            <div style={styles.weddingTime}>7:00 PM</div>
-            <WeddingVenue
-              href="https://www.google.com/maps/place/Hotel+Ciputra+Jakarta/@-6.168163,106.7842292,17z/data=!3m1!4b1!4m7!3m6!1s0x2e69f60404a5e893:0x6f9b862724e130c4!5m1!1s2018-06-25!8m2!3d-6.168163!4d106.7864179"
-              target="_blank"
-            >
-              Hotel Ciputra
-            </WeddingVenue>
-            <WeddingAddress>Dian Ballroom, 6th Floor</WeddingAddress>
-            <WeddingAddress>Jl. Letnan Jenderal S. Parman</WeddingAddress>
-            <WeddingAddress>West Jakarta 11470</WeddingAddress>
-          </Card>
-          <div style={styles.rsvpButtonContainer}>
-            <Link href="/rsvp">
-              <Button type="button" onClick="" style={styles.rsvpButton}>
-                RSVP
-              </Button>
-            </Link>
+export default () => {
+  const timeleft = moment('2018-09-08').countdown()
+  return (
+    <div style={{ height: '100%' }}>
+      <section style={styles.background} />
+      <div style={styles.container}>
+        <section style={styles.content0}>
+          <Title>Yonas & Yulin</Title>
+        </section>
+        <section style={styles.content1}>
+          <Subtitle>Our Story</Subtitle>
+          <Story>
+            We met in the summer of 2010 when both were freshmen at Nanyang
+            Technological University Singapore. Two persons from the same
+            hometown met for the first time in the tiny red dot pursuing their
+            dreams. It was not straight up mutual interest since the first meet,
+            our story took the longer route.
+            <br />
+            <br />
+            But eventually love finds its way 2 years later when we officially
+            committed to each other. Ever since then millions of tears and
+            laughters have been shared, 3 continents have we conquered,
+            thousands of "what should we eat for dinner" have been answered.
+            <br />
+            <br />
+            Fast forward to a little over a year ago, Yonas proposed to Yulin at
+            604 metres above sea level, over 10 thousands kilometres away from
+            home and No(r)way... she said YES! This wedding will definitely be
+            one of the most important moments in our life and we want to share
+            the memories with people that we care the most.
+            <br />
+            <br />
+            <img src="/static/img/heart.svg" style={{ width: '1.5em' }} />
+          </Story>
+        </section>
+        <section style={styles.content2}>
+          <img style={styles.floral} src="/static/img/floral3.png" />
+          <Subtitle style={{ paddingTop: '1em' }}>Our Wedding</Subtitle>
+          <Countdown>
+            <CountdownNumber>{timeleft.months}</CountdownNumber>
+            months
+            <CountdownNumber>{timeleft.days}</CountdownNumber>
+            days to eternity
+          </Countdown>
+          <div style={styles.weddingDetails}>
+            <Card style={{ textAlign: 'right' }}>
+              <CardIcon
+                src="/static/img/singapore.svg"
+                style={{ left: '-1.5em' }}
+              />
+              <CardTitle>Holy Matrimony</CardTitle>
+              <div>Sat, 8 September 2018</div>
+              <div style={styles.weddingTime}>11:00 AM</div>
+              <WeddingVenue
+                href="https://www.google.com/maps/place/Bukit+Batok+Presbyterian+Church/@1.3492122,103.7409816,17z/data=!3m1!4b1!4m5!3m4!1s0x31da103c8b347d05:0xf437a7b7d5d020f6!8m2!3d1.3492122!4d103.7431703"
+                target="_blank"
+              >
+                Bukit Batok Presbyterian Church
+              </WeddingVenue>
+              <WeddingAddress>West Sanctuary, 2nd Floor</WeddingAddress>
+              <WeddingAddress>21 Bukit Batok Street 11</WeddingAddress>
+              <WeddingAddress>Singapore 659673</WeddingAddress>
+            </Card>
+            <Card>
+              <CardIcon
+                src="/static/img/jakarta.svg"
+                style={{ right: '-1.5em' }}
+              />
+              <CardTitle>Wedding Reception</CardTitle>
+              <div>Sat, 15 September 2018</div>
+              <div style={styles.weddingTime}>7:00 PM</div>
+              <WeddingVenue
+                href="https://www.google.com/maps/place/Hotel+Ciputra+Jakarta/@-6.168163,106.7842292,17z/data=!3m1!4b1!4m7!3m6!1s0x2e69f60404a5e893:0x6f9b862724e130c4!5m1!1s2018-06-25!8m2!3d-6.168163!4d106.7864179"
+                target="_blank"
+              >
+                Hotel Ciputra
+              </WeddingVenue>
+              <WeddingAddress>Dian Ballroom, 6th Floor</WeddingAddress>
+              <WeddingAddress>Jl. Letnan Jenderal S. Parman</WeddingAddress>
+              <WeddingAddress>West Jakarta 11470</WeddingAddress>
+            </Card>
+            <div style={styles.rsvpButtonContainer}>
+              <Link href="/rsvp">
+                <Button type="button" onClick="" style={styles.rsvpButton}>
+                  RSVP
+                </Button>
+              </Link>
+            </div>
           </div>
-        </div>
-      </section>
-      <footer style={styles.content3}>
-        <div style={{ fontSize: '1.5em', marginTop: '1em' }}>
-          #YonasYulin #TheJourneYY
-        </div>
-        <div style={{ color: 'gray', margin: '.5em' }}>
-          Made with
-          <img src="/static/img/like.svg" style={{ height: '.8em' }} /> by yonas
-        </div>
-        <GithubLink>
-          <a
-            class="github-button"
-            href="https://github.com/yonasstephen/yonasyulin"
-            data-size="large"
-            data-show-count="true"
-            aria-label="Star yonasstephen/yonasyulin on GitHub"
-          >
-            Star
-          </a>
-        </GithubLink>
-      </footer>
+        </section>
+        <footer style={styles.content3}>
+          <div style={{ fontSize: '1.5em', marginTop: '1em' }}>
+            #YonasYulin #TheJourneYY
+          </div>
+          <div style={{ color: 'gray', margin: '.5em' }}>
+            Made with&nbsp;
+            <img src="/static/img/like.svg" style={{ height: '.8em' }} /> by
+            yonas
+          </div>
+          <GithubLink>
+            <a
+              class="github-button"
+              href="https://github.com/yonasstephen/yonasyulin"
+              data-size="large"
+              data-show-count="true"
+              aria-label="Star yonasstephen/yonasyulin on GitHub"
+            >
+              Star
+            </a>
+          </GithubLink>
+        </footer>
+      </div>
     </div>
-  </div>
-)
-
+  )
+}
 const styles = {
   container: {
     height: '100%',
