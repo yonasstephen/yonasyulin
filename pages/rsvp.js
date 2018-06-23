@@ -58,6 +58,10 @@ const Subtitle = styled.h2`
   font-size: 4em;
   margin: 0;
   padding: 1em;
+
+  @media (max-width: 320px) {
+    font-size: 3.5em;
+  }
 }
 `
 
@@ -281,13 +285,14 @@ export default () => (
 const styles = {
   container: {
     backgroundColor: '#cbece4',
-    height: '100%'
+    minHeight: '100%'
   },
   form: {
     display: 'grid',
-    gridTemplateColumns: 'repeat(5, 1fr)',
+    gridTemplateColumns: 'repeat(5, auto)',
     gridTemplateRows: 'repeat(5, auto) 2em',
-    gridGap: '1.5em'
+    gridGap: '1.5em',
+    paddingBottom: '1.5em'
   },
   title: {
     fontFamily: 'adlery_swash',
