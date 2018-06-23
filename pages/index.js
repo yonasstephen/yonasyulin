@@ -16,6 +16,7 @@ const Title = styled.h1`
 
   @media (max-width: 375px) {
     font-size: 3.5em;
+    margin-top: 1.5em;
   }
 `
 
@@ -23,6 +24,10 @@ const Subtitle = styled.h1`
   font-family: adlery_swash;
   font-size: 5em;
   text-align: center;
+
+  @media (max-width: 375px) {
+    font-size: 4em;
+  }
 `
 
 const Story = styled.p`
@@ -35,8 +40,19 @@ const Story = styled.p`
   padding: 0 2em;
   text-align: center;
 
-  @media (max-width: 414px) {
+  @media (max-width: 375px) {
   }
+`
+
+const Floral = styled.img`
+  width: 50%;
+  max-width: 35em;
+  min-width: 20em;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0) rotate(180deg);
+  -webkit-transform: translate3d(-50%, -50%, 0) rotate(180deg);
+  -ms-transform: translate3d(-50%, -50%, 0) rotate(180deg);
+  position: absolute;
 `
 
 const Countdown = styled.div`
@@ -52,6 +68,21 @@ const CountdownNumber = styled.span`
   margin: 0 0.2em;
 `
 
+const WeddingDetails = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  grid-gap: 1em;
+  margin: auto;
+  max-width: 700px;
+  padding: 1em;
+
+  @media (max-width: 375px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+`
+
 const Card = styled.div`
   background: #c7e0c5;
   border-radius: 4px;
@@ -61,6 +92,10 @@ const Card = styled.div`
   padding: 1em;
   position: relative;
   overflow: hidden;
+
+  @media (max-width: 375px) {
+    ${'' /* grid-row: ${props => (props.venue === 'sg' ? 1 : 2)}; */};
+  }
 `
 
 const CardTitle = styled.h3`
@@ -126,7 +161,7 @@ export default () => {
           </Story>
         </section>
         <section style={styles.content2}>
-          <img style={styles.floral} src="/static/img/floral3.png" />
+          <Floral src="/static/img/floral3.png" />
           <Subtitle style={{ paddingTop: '1em' }}>Our Wedding</Subtitle>
           <Countdown>
             <CountdownNumber>{timeleft.months}</CountdownNumber>
@@ -134,8 +169,8 @@ export default () => {
             <CountdownNumber>{timeleft.days}</CountdownNumber>
             days to eternity
           </Countdown>
-          <div style={styles.weddingDetails}>
-            <Card style={{ textAlign: 'right' }}>
+          <WeddingDetails>
+            <Card venue="sg" style={{ textAlign: 'right' }}>
               <CardIcon
                 src="/static/img/singapore.svg"
                 style={{ left: '-1.5em' }}
@@ -153,7 +188,7 @@ export default () => {
               <WeddingAddress>21 Bukit Batok Street 11</WeddingAddress>
               <WeddingAddress>Singapore 659673</WeddingAddress>
             </Card>
-            <Card>
+            <Card venue="jkt">
               <CardIcon
                 src="/static/img/jakarta.svg"
                 style={{ right: '-1.5em' }}
@@ -171,13 +206,13 @@ export default () => {
               <WeddingAddress>Jl. Letnan Jenderal S. Parman</WeddingAddress>
               <WeddingAddress>West Jakarta 11470</WeddingAddress>
             </Card>
-            <div style={styles.rsvpButtonContainer}>
-              <Link href="/rsvp">
-                <Button type="button" onClick="" style={styles.rsvpButton}>
-                  RSVP
-                </Button>
-              </Link>
-            </div>
+          </WeddingDetails>
+          <div style={styles.rsvpButtonContainer}>
+            <Link href="/rsvp">
+              <Button type="button" onClick="" style={styles.rsvpButton}>
+                RSVP
+              </Button>
+            </Link>
           </div>
         </section>
         <footer style={styles.content3}>
@@ -250,31 +285,11 @@ const styles = {
   image: {
     width: '100%'
   },
-  floral: {
-    width: '50%',
-    maxWidth: '35em',
-    minWidth: '25em',
-    left: '50%',
-    transform: 'translate3d(-50%, -50%, 0) rotate(180deg)',
-    WebkitTransform: 'translate3d(-50%, -50%, 0) rotate(180deg)',
-    msTransform: 'translate3d(-50%, -50%, 0) rotate(180deg)',
-    position: 'absolute'
-  },
-  weddingDetails: {
-    display: 'grid',
-    gridTemplateColumns: '1fr 1fr',
-    gridTemplateRows: '1fr 2em',
-    gridGap: '1em',
-    margin: 'auto',
-    maxWidth: '700px',
-    padding: '1em'
-  },
   weddingTime: {
     fontFamily: 'tajawal',
     fontWeight: 'bold'
   },
   rsvpButtonContainer: {
-    gridColumn: '1 / 3',
     textAlign: 'center'
   },
   rsvpButton: {
