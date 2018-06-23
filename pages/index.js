@@ -14,9 +14,17 @@ const Title = styled.h1`
   text-align: center;
   margin-top: 2em;
 
+  @media (max-width: 414px) {
+    font-size: 4em;
+    margin-top: 1.5em;
+  }
+
   @media (max-width: 375px) {
     font-size: 3.5em;
-    margin-top: 1.5em;
+  }
+
+  @media (max-width: 320px) {
+    font-size: 3em;
   }
 `
 
@@ -25,8 +33,16 @@ const Subtitle = styled.h1`
   font-size: 5em;
   text-align: center;
 
+  @media (max-width: 414px) {
+    font-size: 4.5em;
+  }
+
   @media (max-width: 375px) {
     font-size: 4em;
+  }
+
+  @media (max-width: 375px) {
+    font-size: 3.5em;
   }
 `
 
@@ -40,7 +56,8 @@ const Story = styled.p`
   padding: 0 2em;
   text-align: center;
 
-  @media (max-width: 375px) {
+  @media (max-width: 414px) {
+    padding: 0 1em;
   }
 `
 
@@ -77,7 +94,7 @@ const WeddingDetails = styled.div`
   max-width: 700px;
   padding: 1em;
 
-  @media (max-width: 375px) {
+  @media (max-width: 414px) {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 1fr;
   }
@@ -92,9 +109,14 @@ const Card = styled.div`
   padding: 1em;
   position: relative;
   overflow: hidden;
+  z-index: 0;
+
+  @media (max-width: 414px) {
+    font-size: 1.2em;
+  }
 
   @media (max-width: 375px) {
-    ${'' /* grid-row: ${props => (props.venue === 'sg' ? 1 : 2)}; */};
+    font-size: 1.2em;
   }
 `
 
@@ -108,12 +130,22 @@ const CardTitle = styled.h3`
 const CardIcon = styled.img`
   position: absolute;
   width: 7em;
+  z-index: -1;
+
+  @media (max-width: 375px) {
+    width: 6em;
+  }
+
+  @media (max-width: 320px) {
+    width: 5em;
+  }
 `
 
 const WeddingVenue = styled.a`
   color: #33771f;
   font-weight: bold;
   text-decoration-color: #33771f;
+  z-index: 2;
 `
 
 const WeddingAddress = styled.div`
