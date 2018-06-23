@@ -194,7 +194,9 @@ export default () => {
         </section>
         <section style={styles.content2}>
           <Floral src="/static/img/floral3.png" />
-          <Subtitle style={{ paddingTop: '1em' }}>Our Wedding</Subtitle>
+          <Subtitle style={{ paddingTop: '1em', marginBottom: '.2em' }}>
+            Our Wedding
+          </Subtitle>
           <Countdown>
             <CountdownNumber>{timeleft.months}</CountdownNumber>
             months
@@ -257,15 +259,13 @@ export default () => {
             yonas
           </div>
           <GithubLink>
-            <a
-              class="github-button"
-              href="https://github.com/yonasstephen/yonasyulin"
-              data-size="large"
-              data-show-count="true"
-              aria-label="Star yonasstephen/yonasyulin on GitHub"
-            >
-              Star
-            </a>
+            <iframe
+              src="https://ghbtns.com/github-btn.html?user=yonasstephen&repo=yonasyulin&type=star&count=true"
+              frameborder="0"
+              scrolling="0"
+              width="72px"
+              height="20px"
+            />
           </GithubLink>
         </footer>
       </div>
