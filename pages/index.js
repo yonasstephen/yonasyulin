@@ -14,7 +14,8 @@ const Title = styled.h1`
   text-align: center;
   margin-top: 2em;
 
-  @media (max-width: 414px) {
+  @media (max-width: 375px) {
+    font-size: 3.5em;
   }
 `
 
