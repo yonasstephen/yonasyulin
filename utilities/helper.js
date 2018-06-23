@@ -20,7 +20,7 @@ export function uuidv4() {
 export function generateICSURL(events) {
   if (!events || events.length < 1) return ''
 
-  let ics = 'BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:yycalendar\nMETHOD:REQUEST\n'
+  let ics = 'BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:yycalendar\nMETHOD:PUBLISH\n'
   events.forEach((event, index) => {
     const vevent =
       `BEGIN:VEVENT\nUID:yy-${index}\n` +
