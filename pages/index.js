@@ -261,7 +261,7 @@ export default () => {
           <GithubLink>
             <iframe
               src="https://ghbtns.com/github-btn.html?user=yonasstephen&repo=yonasyulin&type=star&count=true"
-              frameborder="0"
+              frameBorder="0"
               scrolling="0"
               width="72px"
               height="20px"
