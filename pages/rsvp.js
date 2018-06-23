@@ -1,11 +1,19 @@
-import { withFormik } from 'formik'
+import { Component } from 'react'
+import { Formik, withFormik } from 'formik'
 import { ToastContainer, toast } from 'react-toastify'
+import moment from 'moment'
+import styled from 'styled-components'
 
 import Button from '../components/button'
 import TextBox from '../components/textbox'
 import RadioButton from '../components/radiobutton'
 import Checkbox from '../components/checkbox'
-import { getFormData, uuidv4 } from '../utilities/helper'
+import {
+  getFormData,
+  generateICSURL,
+  icsDateFormat,
+  uuidv4
+} from '../utilities/helper'
 
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -18,76 +26,176 @@ const locationOptions = [
   { caption: 'Singapore, 8 Sep 2018 (11 AM)', value: 'sg' },
   { caption: 'Jakarta, 15 Sep 2018 (7 PM)', value: 'jkt' }
 ]
+const events = {
+  sg: {
+    summary: 'Yonas & Yulin - Holy Matrimony',
+    start_date: moment.utc('20180908T110000+0800').format(icsDateFormat),
+    end_date: moment.utc('20180908T130000+0800').format(icsDateFormat),
+    location:
+      'Bukit Batok Presbyterian Church, 21 Bukit Batok St 11, Singapore',
+    description: 'West Sanctuary 2nd Floor'
+  },
+  jkt: {
+    summary: 'Yonas & Yulin - Wedding Reception',
+    start_date: moment.utc('20180915T190000+0700').format(icsDateFormat),
+    end_date: moment.utc('20180915T210000+0700').format(icsDateFormat),
+    location: 'Hotel Ciputra, Jl. Letnan Jenderal S. Parman, West Jakarta',
+    description: 'Dian Ballroom 6th Floor'
+  }
+}
 
-const InnerForm = ({
-  errors,
-  handleBlur,
-  handleChange,
-  handleSubmit,
-  isSubmitting,
-  setFieldValue,
-  touched,
-  values
-}) => {
-  return (
-    <form onSubmit={handleSubmit} style={styles.form}>
-      <div style={styles.radioGroupIsComing}>
-        <RadioButton
-          error={errors.is_coming}
-          name="is_coming"
-          onBlur={handleBlur}
-          onChange={handleChange}
-          options={presenceOptions}
-          selectedValue={values.is_coming}
-          title="Will you come to our wedding?"
-          touched={touched.is_coming}
-        />
-      </div>
-      <TextBox
-        error={errors.name}
-        name="name"
-        onChange={handleChange}
-        onBlur={handleBlur}
-        style={styles.inputName}
-        title="What's your name?"
-        touched={touched.name}
-        value={values.name}
-      />
-      {values.is_coming === '1' && (
-        <div style={styles.checkboxGroupLocations}>
-          <Checkbox
-            error={errors.locations}
-            name="locations"
+const SuccessPage = styled.div`
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+`
+
+const Subtitle = styled.h2`
+  color: #1b9a8e;
+  font-family: adlery_swash;
+  font-size: 4em;
+  margin: 0;
+  padding: 1em;
+}
+`
+
+const AddToCalendar = styled.a`
+  color: #fff;
+  font-size: 1.2em;
+  font-weight: bold;
+  text-decoration: none;
+`
+const AddToCalendarIcon = styled.img`
+  height: 1em;
+  margin-right: 0.3em;
+`
+
+function getEvents(locations) {
+  if (!locations) return ''
+
+  let comingEvents = []
+  locations.forEach((location, index) => {
+    if (events[location]) {
+      comingEvents.push(events[location])
+    }
+  })
+  return comingEvents
+}
+
+class InnerForm extends Component {
+  renderForm() {
+    const {
+      errors,
+      form,
+      handleBlur,
+      handleChange,
+      handleSubmit,
+      isSubmitting,
+      setFieldValue,
+      status,
+      touched,
+      values
+    } = this.props
+    return (
+      <form onSubmit={handleSubmit} style={styles.form}>
+        <h1 style={styles.title}>RSVP</h1>
+        <div style={styles.radioGroupIsComing}>
+          <RadioButton
+            error={errors.is_coming}
+            name="is_coming"
             onBlur={handleBlur}
-            onChange={setFieldValue}
-            options={locationOptions}
-            selectedValues={values.locations}
-            title="Which event will you come to?"
-            touched={touched.locations}
+            onChange={handleChange}
+            options={presenceOptions}
+            selectedValue={values.is_coming}
+            title="Will you come to our wedding?"
+            touched={touched.is_coming}
           />
         </div>
-      )}
-      {values.is_coming === '1' && (
         <TextBox
-          error={errors.pax}
-          name="pax"
+          error={errors.name}
+          name="name"
           onChange={handleChange}
           onBlur={handleBlur}
-          style={styles.inputPax}
-          title="How many persons will come? (including you)"
-          touched={touched.pax}
-          value={values.pax}
+          style={styles.inputName}
+          title="What's your name?"
+          touched={touched.name}
+          value={values.name}
         />
-      )}
-      <Button style={styles.submitButton} type="submit" disabled={isSubmitting}>
-        {isSubmitting && (
-          <img src="/static/img/bars.svg" style={styles.spinner} />
+        {values.is_coming === '1' && (
+          <div style={styles.checkboxGroupLocations}>
+            <Checkbox
+              error={errors.locations}
+              name="locations"
+              onBlur={handleBlur}
+              onChange={setFieldValue}
+              options={locationOptions}
+              selectedValues={values.locations}
+              title="Which event will you come to?"
+              touched={touched.locations}
+            />
+          </div>
         )}
-        <span style={{}}>Submit</span>
-      </Button>
-      <ToastContainer />
-    </form>
-  )
+        {values.is_coming === '1' && (
+          <TextBox
+            error={errors.pax}
+            name="pax"
+            onChange={handleChange}
+            onBlur={handleBlur}
+            style={styles.inputPax}
+            title="How many persons will come? (including you)"
+            touched={touched.pax}
+            value={values.pax}
+          />
+        )}
+        <Button
+          style={styles.submitButton}
+          type="submit"
+          disabled={isSubmitting}
+        >
+          {isSubmitting && (
+            <img src="/static/img/bars.svg" style={styles.spinner} />
+          )}
+          <span style={{}}>Submit</span>
+        </Button>
+      </form>
+    )
+  }
+
+  renderSuccessPage() {
+    const { values } = this.props
+
+    return (
+      <SuccessPage>
+        <Subtitle>Thank you for your RSVP!</Subtitle>
+        {values.locations &&
+          values.locations.length > 0 && (
+            <Button backgroundColor="#ef8b89" color="#fff">
+              <AddToCalendar
+                href={`data:text/calendar;charset=utf8,${generateICSURL(
+                  getEvents(values.locations)
+                )}`}
+              >
+                <AddToCalendarIcon src="/static/img/calendar.svg" />
+                Add to Calendar
+              </AddToCalendar>
+            </Button>
+          )}
+      </SuccessPage>
+    )
+  }
+
+  render() {
+    const showForm = !this.props.status || !this.props.status.hasSubmitted
+    return (
+      <div style={{ height: '100%' }}>
+        {showForm && this.renderForm()}
+        {!showForm && this.renderSuccessPage()}
+        <ToastContainer />
+      </div>
+    )
+  }
 }
 
 const RSVPForm = withFormik({
@@ -121,7 +229,10 @@ const RSVPForm = withFormik({
 
     return errors
   },
-  handleSubmit: (values, { props, resetForm, setSubmitting, setErrors }) => {
+  handleSubmit: (
+    values,
+    { props, resetForm, setSubmitting, setErrors, setStatus }
+  ) => {
     // generates UUID
     values.id = uuidv4()
 
@@ -132,24 +243,37 @@ const RSVPForm = withFormik({
 
     fetch(formURL, { method: 'POST', body: getFormData(values) })
       .then(res => {
-        toast('Thank you for your RSVP!', {
-          className: 'toast-background',
+        setSubmitting(false)
+        // toast('Thank you for your RSVP!', {
+        //   className: 'toast-background',
+        //   bodyClassName: 'toast-body',
+        //   progressClassName: 'toast-progress'
+        // })
+
+        // Don't reset values.locations cos it's used by Add to calendar
+        // resetForm({
+        //   name: '',
+        //   locations: [],
+        //   pax: ''
+        // })
+
+        // pass form submission state to lower order component
+        setStatus({ hasSubmitted: true })
+      })
+      .catch(err => {
+        setSubmitting(false)
+        setErrors(err)
+        toast(`Oops! There is an error in your submission (err: ${err})`, {
+          className: 'toast-background-err',
           bodyClassName: 'toast-body',
-          progressClassName: 'toast-progress'
-        })
-        resetForm({
-          name: '',
-          locations: [],
-          pax: ''
+          progressClassName: 'toast-progress-err'
         })
       })
-      .catch(err => console.log('Err: ', err))
   }
 })(InnerForm)
 
 export default () => (
   <div style={styles.container}>
-    <h1 style={styles.title}>RSVP</h1>
     <RSVPForm />
   </div>
 )
@@ -159,32 +283,36 @@ const styles = {
     backgroundColor: '#cbece4',
     height: '100%'
   },
-  title: {
-    margin: '0',
-    padding: '1em',
-    textAlign: 'center'
-  },
   form: {
     display: 'grid',
     gridTemplateColumns: 'repeat(5, 1fr)',
-    gridTemplateRows: 'repeat(4, auto) 2em',
+    gridTemplateRows: 'repeat(5, auto) 2em',
     gridGap: '1.5em'
   },
-  radioGroupIsComing: {
+  title: {
+    fontFamily: 'adlery_swash',
+    fontSize: '4em',
+    margin: '0',
+    padding: '1em .5em .5em',
+    textAlign: 'center',
     gridColumn: '2 / span 3',
     gridRow: '1'
   },
-  inputName: {
+  radioGroupIsComing: {
     gridColumn: '2 / span 3',
     gridRow: '2'
   },
-  checkboxGroupLocations: {
+  inputName: {
     gridColumn: '2 / span 3',
     gridRow: '3'
   },
-  inputPax: {
+  checkboxGroupLocations: {
     gridColumn: '2 / span 3',
     gridRow: '4'
+  },
+  inputPax: {
+    gridColumn: '2 / span 3',
+    gridRow: '5'
   },
   submitButton: {
     alignSelf: 'center',
@@ -193,7 +321,7 @@ const styles = {
     display: 'flex',
     fontSize: '1em',
     gridColumn: '3',
-    gridRow: '5',
+    gridRow: '6',
     justifySelf: 'center',
     lineHeight: '2em',
     padding: '0.2em 1em',

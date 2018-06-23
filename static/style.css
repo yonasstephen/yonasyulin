@@ -44,6 +44,10 @@ body {
   background-color: #3da241;
 }
 
+.toast-background-err {
+  background-color: #e74c3c;
+}
+
 .toast-body {
   color: #fff;
   font-family: tajawal;
@@ -52,4 +56,8 @@ body {
 
 .toast-progress {
   background: linear-gradient(-12deg, #afe6cd, #bbd487);
+}
+
+.toast-progress-err {
+  background: linear-gradient(116deg, #f3f0c7, #eab75f);
 }
