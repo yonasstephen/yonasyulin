@@ -157,8 +157,8 @@ class InnerForm extends Component {
               style={styles.addToCalendar}
             >
               Add to Calendar (SG)
-              <span className="start">08/09/2018 11:00 AM</span>
-              <span className="end">08/09/2018 01:00 PM</span>
+              <span className="start">09/08/2018 11:00 AM</span>
+              <span className="end">09/08/2018 01:00 PM</span>
               <span className="timezone">Asia/Singapore</span>
               <span className="calname">YY-SG</span>
               <span className="title">Yonas & Yulin - Holy Matrimony</span>
@@ -177,8 +177,8 @@ class InnerForm extends Component {
             >
               {/* <AddToCalendarIcon src="/static/img/calendar.svg" /> */}
               Add to Calendar (JKT)
-              <span className="start">15/09/2018 07:00 PM</span>
-              <span className="end">15/09/2018 09:00 PM</span>
+              <span className="start">09/15/2018 07:00 PM</span>
+              <span className="end">09/15/2018 09:00 PM</span>
               <span className="timezone">Asia/Jakarta</span>
               <span className="calname">YY-JKT</span>
               <span className="title">Yonas & Yulin - Wedding Reception</span>
