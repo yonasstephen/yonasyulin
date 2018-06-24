@@ -20,16 +20,17 @@ export function uuidv4() {
 export function generateICSURL(events) {
   if (!events || events.length < 1) return ''
 
-  let ics = 'BEGIN:VCALENDAR\nVERSION:2.0\nPRODID:yycalendar\nMETHOD:PUBLISH\n'
+  let ics =
+    'BEGIN:VCALENDAR\r\nVERSION:2.0\r\nPRODID:yycalendar\r\nMETHOD:PUBLISH\r\n'
   events.forEach((event, index) => {
     const vevent =
-      `BEGIN:VEVENT\nUID:yy-${index}\n` +
-      `DTSTAMP:${moment.utc().format(icsDateFormat)}\n` +
-      `DTSTART:${escapeICS(event.start_date)}\n` +
-      `DTEND:${escapeICS(event.end_date)}\n` +
-      `SUMMARY:${escapeICS(event.summary)}\n` +
-      `LOCATION:${escapeICS(event.location)}\n` +
-      `DESCRIPTION:${escapeICS(event.description)}\n` +
+      `BEGIN:VEVENT\r\nUID:yy-${index}\r\n` +
+      `DTSTAMP:${moment.utc().format(icsDateFormat)}\r\n` +
+      `DTSTART:${escapeICS(event.start_date)}\r\n` +
+      `DTEND:${escapeICS(event.end_date)}\r\n` +
+      `SUMMARY:${escapeICS(event.summary)}\r\n` +
+      `LOCATION:${escapeICS(event.location)}\r\n` +
+      `DESCRIPTION:${escapeICS(event.description)}\r\n` +
       `END:VEVENT\n`
     ics += escape(vevent)
   })

@@ -8,12 +8,7 @@ import Button from '../components/button'
 import TextBox from '../components/textbox'
 import RadioButton from '../components/radiobutton'
 import Checkbox from '../components/checkbox'
-import {
-  getFormData,
-  generateICSURL,
-  icsDateFormat,
-  uuidv4
-} from '../utilities/helper'
+import { getFormData, uuidv4 } from '../utilities/helper'
 
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -26,23 +21,6 @@ const locationOptions = [
   { caption: 'Singapore, 8 Sep 2018 (11 AM)', value: 'sg' },
   { caption: 'Jakarta, 15 Sep 2018 (7 PM)', value: 'jkt' }
 ]
-const events = {
-  sg: {
-    summary: 'Yonas & Yulin - Holy Matrimony',
-    start_date: moment.utc('20180908T110000+0800').format(icsDateFormat),
-    end_date: moment.utc('20180908T130000+0800').format(icsDateFormat),
-    location:
-      'Bukit Batok Presbyterian Church, 21 Bukit Batok St 11, Singapore',
-    description: 'West Sanctuary 2nd Floor'
-  },
-  jkt: {
-    summary: 'Yonas & Yulin - Wedding Reception',
-    start_date: moment.utc('20180915T190000+0700').format(icsDateFormat),
-    end_date: moment.utc('20180915T210000+0700').format(icsDateFormat),
-    location: 'Hotel Ciputra, Jl. Letnan Jenderal S. Parman, West Jakarta',
-    description: 'Dian Ballroom 6th Floor'
-  }
-}
 
 const SuccessPage = styled.div`
   align-items: center;
@@ -65,12 +43,6 @@ const Subtitle = styled.h2`
 }
 `
 
-const AddToCalendar = styled.a`
-  color: #fff;
-  font-size: 1.2em;
-  font-weight: bold;
-  text-decoration: none;
-`
 const AddToCalendarIcon = styled.img`
   height: 1em;
   margin-right: 0.3em;
@@ -174,28 +146,56 @@ class InnerForm extends Component {
       <SuccessPage>
         <Subtitle>Thank you for your RSVP!</Subtitle>
         {values.locations &&
-          values.locations.length > 0 && (
-            <Button backgroundColor="#ef8b89" color="#fff">
-              <AddToCalendar
-                href={`data:text/calendar;charset=utf8,${generateICSURL(
-                  getEvents(values.locations)
-                )}`}
-              >
-                <AddToCalendarIcon src="/static/img/calendar.svg" />
-                Add to Calendar
-              </AddToCalendar>
-            </Button>
+          values.locations.indexOf('sg') !== -1 && (
+            <div
+              title="Add to Calendar (SG)"
+              className="addeventatc"
+              style={styles.addToCalendar}
+            >
+              Add to Calendar (SG)
+              <span className="start">08/09/2018 11:00 AM</span>
+              <span className="end">08/09/2018 01:00 PM</span>
+              <span className="timezone">Asia/Singapore</span>
+              <span className="calname">YY-SG</span>
+              <span className="title">Yonas & Yulin - Holy Matrimony</span>
+              <span className="location">
+                Bukit Batok Presbyterian Church, 21 Bukit Batok St 11, Singapore
+              </span>
+              <span className="description">East Sanctuary 2nd Floor</span>
+            </div>
+          )}
+        {values.locations &&
+          values.locations.indexOf('jkt') !== -1 && (
+            <div
+              title="Add to Calendar (JKT)"
+              className="addeventatc"
+              style={styles.addToCalendar}
+            >
+              {/* <AddToCalendarIcon src="/static/img/calendar.svg" /> */}
+              Add to Calendar (JKT)
+              <span className="start">15/09/2018 07:00 PM</span>
+              <span className="end">15/09/2018 09:00 PM</span>
+              <span className="timezone">Asia/Jakarta</span>
+              <span className="calname">YY-JKT</span>
+              <span className="title">Yonas & Yulin - Wedding Reception</span>
+              <span className="location">
+                Hotel Ciputra, Jl. Letnan Jenderal S. Parman, West Jakarta
+              </span>
+              <span className="description">Dian Ballroom 6th Floor</span>
+            </div>
           )}
       </SuccessPage>
     )
   }
 
   render() {
+    const { values } = this.props
     const showForm = !this.props.status || !this.props.status.hasSubmitted
     return (
       <div style={{ height: '100%' }}>
         {showForm && this.renderForm()}
         {!showForm && this.renderSuccessPage()}
+
         <ToastContainer />
       </div>
     )
@@ -248,12 +248,6 @@ const RSVPForm = withFormik({
     fetch(formURL, { method: 'POST', body: getFormData(values) })
       .then(res => {
         setSubmitting(false)
-        // toast('Thank you for your RSVP!', {
-        //   className: 'toast-background',
-        //   bodyClassName: 'toast-body',
-        //   progressClassName: 'toast-progress'
-        // })
-
         // Don't reset values.locations cos it's used by Add to calendar
         // resetForm({
         //   name: '',
@@ -336,5 +330,11 @@ const styles = {
     alignSelf: 'center',
     height: '1.5em',
     marginRight: '.5em'
+  },
+  addToCalendar: {
+    border: 'none',
+    fontFamily: 'tajawal',
+    margin: '.2em',
+    padding: '13px 12px'
   }
 }

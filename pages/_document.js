@@ -14,6 +14,21 @@ export default class MyDocument extends Document {
     return { ...page, styleTags }
   }
 
+  componendWillMount() {
+    window.addeventasync = function() {
+      addeventatc.settings({
+        appleical: { show: true, text: 'Apple Calendar' },
+        google: { show: true, text: 'Google <em>(online)</em>' },
+        outlook: { show: true, text: 'Outlook' },
+        outlookcom: {
+          show: true,
+          text: 'Outlook.com <em>(online)</em>'
+        },
+        yahoo: { show: true, text: 'Yahoo <em>(online)</em>' }
+      })
+    }
+  }
+
   render() {
     return (
       <html>
@@ -26,7 +41,14 @@ export default class MyDocument extends Document {
           <link rel="stylesheet" href="/_next/static/style.css" />
           <link rel="stylesheet" href="/static/style.css" />
           {this.props.styleTags}
-          <script src="https://buttons.github.io/buttons.js" />
+
+          {/* <!-- AddEvent script --> */}
+          <script
+            type="text/javascript"
+            src="https://addevent.com/libs/atc/1.6.1/atc.min.js"
+            async
+            defer
+          />
         </Head>
         <body>
           <Main />
