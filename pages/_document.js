@@ -14,7 +14,7 @@ export default class MyDocument extends Document {
     return { ...page, styleTags }
   }
 
-  componendWillMount() {
+  componendDidMount() {
     window.addeventasync = function() {
       addeventatc.settings({
         appleical: { show: true, text: 'Apple Calendar' },

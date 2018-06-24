@@ -61,6 +61,10 @@ function getEvents(locations) {
 }
 
 class InnerForm extends Component {
+  componentDidUpdate() {
+    window.addeventatc.refresh()
+  }
+
   renderForm() {
     const {
       errors,
@@ -334,7 +338,6 @@ const styles = {
   addToCalendar: {
     border: 'none',
     fontFamily: 'tajawal',
-    margin: '.2em',
-    padding: '13px 12px'
+    margin: '.2em'
   }
 }
