@@ -176,7 +176,7 @@ export default () => {
             our story took the longer route.
             <br />
             <br />
-            But eventually love finds its way 2 years later when we officially
+            But eventually love found its way 2 years later when we officially
             committed to each other. Ever since then millions of tears and
             laughters have been shared, 3 continents have we conquered,
             thousands of "what should we eat for dinner" have been answered.
